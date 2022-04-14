@@ -6,7 +6,7 @@ class Event
 {
     // phpcs:disable Generic.Arrays.DisallowLongArraySyntax
 
-    const HTML_TEMPLATE = '<p>%s: %s</p>';
+    public const HTML_TEMPLATE = '<p>%s: %s</p>';
 
     /**
      * https://www.kanzaki.com/docs/ical/summary.html

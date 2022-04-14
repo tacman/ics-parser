@@ -17,16 +17,16 @@ class ICal
 {
     // phpcs:disable Generic.Arrays.DisallowLongArraySyntax
 
-    const DATE_TIME_FORMAT        = 'Ymd\THis';
-    const DATE_TIME_FORMAT_PRETTY = 'F Y H:i:s';
-    const ICAL_DATE_TIME_TEMPLATE = 'TZID=%s:';
-    const ISO_8601_WEEK_START     = 'MO';
-    const RECURRENCE_EVENT        = 'Generated recurrence event';
-    const SECONDS_IN_A_WEEK       = 604800;
-    const TIME_FORMAT             = 'His';
-    const TIME_ZONE_UTC           = 'UTC';
-    const UNIX_FORMAT             = 'U';
-    const UNIX_MIN_YEAR           = 1970;
+    public const DATE_TIME_FORMAT        = 'Ymd\THis';
+    public const DATE_TIME_FORMAT_PRETTY = 'F Y H:i:s';
+    public const ICAL_DATE_TIME_TEMPLATE = 'TZID=%s:';
+    public const ISO_8601_WEEK_START     = 'MO';
+    public const RECURRENCE_EVENT        = 'Generated recurrence event';
+    public const SECONDS_IN_A_WEEK       = 604800;
+    public const TIME_FORMAT             = 'His';
+    public const TIME_ZONE_UTC           = 'UTC';
+    public const UNIX_FORMAT             = 'U';
+    public const UNIX_MIN_YEAR           = 1970;
 
     /**
      * Tracks the number of alarms in the current iCal feed
@@ -807,7 +807,7 @@ class ICal
      */
     protected function reduceEventsToMinMaxRange()
     {
-        $events = (isset($this->cal['VEVENT'])) ? $this->cal['VEVENT'] : array();
+        $events = $this->cal['VEVENT'] ?? array();
 
         if (!empty($events)) {
             foreach ($events as $key => $anEvent) {
@@ -1212,7 +1212,7 @@ class ICal
     protected function processEvents()
     {
         $checks = null;
-        $events = (isset($this->cal['VEVENT'])) ? $this->cal['VEVENT'] : array();
+        $events = $this->cal['VEVENT'] ?? array();
 
         if (!empty($events)) {
             foreach ($events as $key => $anEvent) {
@@ -1281,7 +1281,7 @@ class ICal
      */
     protected function processRecurrences()
     {
-        $events = (isset($this->cal['VEVENT'])) ? $this->cal['VEVENT'] : array();
+        $events = $this->cal['VEVENT'] ?? array();
 
         // If there are no events, then we have nothing to process.
         if (empty($events)) {
@@ -2035,7 +2035,7 @@ class ICal
      */
     protected function processDateConversions()
     {
-        $events = (isset($this->cal['VEVENT'])) ? $this->cal['VEVENT'] : array();
+        $events = $this->cal['VEVENT'] ?? array();
 
         if (!empty($events)) {
             foreach ($events as $key => $anEvent) {
@@ -2071,7 +2071,7 @@ class ICal
     public function events()
     {
         $array = $this->cal;
-        $array = isset($array['VEVENT']) ? $array['VEVENT'] : array();
+        $array = $array['VEVENT'] ?? array();
 
         $events = array();
 
@@ -2091,7 +2091,7 @@ class ICal
      */
     public function calendarName()
     {
-        return isset($this->cal['VCALENDAR']['X-WR-CALNAME']) ? $this->cal['VCALENDAR']['X-WR-CALNAME'] : '';
+        return $this->cal['VCALENDAR']['X-WR-CALNAME'] ?? '';
     }
 
     /**
@@ -2101,7 +2101,7 @@ class ICal
      */
     public function calendarDescription()
     {
-        return isset($this->cal['VCALENDAR']['X-WR-CALDESC']) ? $this->cal['VCALENDAR']['X-WR-CALDESC'] : '';
+        return $this->cal['VCALENDAR']['X-WR-CALDESC'] ?? '';
     }
 
     /**
@@ -2141,7 +2141,7 @@ class ICal
     {
         $array = $this->cal;
 
-        return isset($array['VFREEBUSY']) ? $array['VFREEBUSY'] : array();
+        return $array['VFREEBUSY'] ?? array();
     }
 
     /**
@@ -2222,7 +2222,7 @@ class ICal
 
         foreach ($events as $anEvent) {
             $eventStart = $anEvent->dtstart_array[2];
-            $eventEnd   = (isset($anEvent->dtend_array[2])) ? $anEvent->dtend_array[2] : null;
+            $eventEnd   = $anEvent->dtend_array[2] ?? null;
 
             if (
                 ($eventStart >= $rangeStart && $eventStart < $rangeEnd)         // Event start date contained in the range

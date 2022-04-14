@@ -1,7 +1,7 @@
 <?php
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use ICal\ICal;
 
@@ -17,8 +17,8 @@ try {
     ));
     // $ical->initFile('ICal.ics');
     // $ical->initUrl('https://raw.githubusercontent.com/u01jmg3/ics-parser/master/examples/ICal.ics', $username = null, $password = null, $userAgent = null);
-} catch (\Exception $e) {
-    die($e);
+} catch (\Exception $exception) {
+    die($exception);
 }
 ?>
 <!DOCTYPE html>

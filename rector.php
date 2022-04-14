@@ -20,7 +20,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::IMPORT_SHORT_CLASSES, false);
 
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_56);
+    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
 
     $parameters->set(Option::AUTOLOAD_PATHS, array(__DIR__ . '/vendor/autoload.php'));
 
