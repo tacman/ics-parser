@@ -24,6 +24,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $parameters->set(Option::AUTOLOAD_PATHS, array(__DIR__ . '/vendor/autoload.php'));
 
+    if (0)
     $parameters->set(Option::SKIP, array(
         // Rectors
         Rector\CodeQuality\Rector\Class_\CompleteDynamicPropertiesRector::class,

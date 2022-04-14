@@ -985,7 +985,7 @@ class rfc5545RecurrenceExamplesTest extends TestCase
         $this->assertCount($count, $events);
 
         foreach ($checks as $check) {
-            $this->assertEvent($events[$check['index']], $check['dateString'], $check['message'], isset($check['timezone']) ? $check['timezone'] : $defaultTimezone);
+            $this->assertEvent($events[$check['index']], $check['dateString'], $check['message'], $check['timezone'] ?? $defaultTimezone);
         }
     }
 
@@ -1003,7 +1003,7 @@ class rfc5545RecurrenceExamplesTest extends TestCase
 
     public function getOptions($defaultTimezone)
     {
-        $options = array(
+        return array(
             'defaultSpan'                 => 2,                // Default value: 2
             'defaultTimeZone'             => $defaultTimezone, // Default value: UTC
             'defaultWeekStart'            => 'MO',             // Default value
@@ -1012,8 +1012,6 @@ class rfc5545RecurrenceExamplesTest extends TestCase
             'filterDaysBefore'            => null,             // Default value
             'skipRecurrence'              => false,            // Default value
         );
-
-        return $options;
     }
 
     public function formatIcalEvent($veventParts)

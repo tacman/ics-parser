@@ -104,14 +104,14 @@ class SingleEventsTest extends TestCase
                 $events[$check['index']],
                 $check['dateString'],
                 $check['message'],
-                isset($check['timezone']) ? $check['timezone'] : $defaultTimezone
+                $check['timezone'] ?? $defaultTimezone
             );
         }
     }
 
     public function getOptions($defaultTimezone)
     {
-        $options = array(
+        return array(
             'defaultSpan'                 => 2,                // Default value
             'defaultTimeZone'             => $defaultTimezone, // Default value: UTC
             'defaultWeekStart'            => 'MO',             // Default value
@@ -120,8 +120,6 @@ class SingleEventsTest extends TestCase
             'filterDaysBefore'            => null,             // Default value
             'skipRecurrence'              => false,            // Default value
         );
-
-        return $options;
     }
 
     public function getIcalHeader()
@@ -494,7 +492,7 @@ class SingleEventsTest extends TestCase
                 $events[$check['index']],
                 $check['dateString'],
                 $check['message'],
-                isset($check['timezone']) ? $check['timezone'] : $defaultTimezone
+                $check['timezone'] ?? $defaultTimezone
             );
         }
     }

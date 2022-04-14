@@ -64,7 +64,7 @@ try {
         if ($showExample['interval']) {
             $events = $ical->eventsFromInterval('1 week');
 
-            if ($events) {
+            if ($events !== []) {
                 echo '<h4>Events in the next 7 days:</h4>';
             }
 
@@ -89,19 +89,21 @@ try {
                 echo '</div><div class="row">';
             }
 
-            $count++;
+            ++$count;
         ?>
     <?php
     endforeach
     ?>
-    </div>
-    <?php } ?>
+
+        </div>
+<?php }
+     ?>
 
     <?php
         if ($showExample['range']) {
             $events = $ical->eventsFromRange('2017-03-01 12:00:00', '2017-04-31 17:00:00');
 
-            if ($events) {
+            if ($events !== []) {
                 echo '<h4>Events March through April:</h4>';
             }
 
@@ -126,19 +128,21 @@ try {
                 echo '</div><div class="row">';
             }
 
-            $count++;
+            ++$count;
         ?>
     <?php
     endforeach
     ?>
-    </div>
-    <?php } ?>
+
+        </div>
+<?php }
+     ?>
 
     <?php
         if ($showExample['all']) {
             $events = $ical->sortEventsWithOrder($ical->events());
 
-            if ($events) {
+            if ($events !== []) {
                 echo '<h4>All Events:</h4>';
             }
     ?>
@@ -162,13 +166,15 @@ try {
                 echo '</div><div class="row">';
             }
 
-            $count++;
+            ++$count;
         ?>
     <?php
     endforeach
     ?>
-    </div>
-    <?php } ?>
+
+        </div>
+<?php }
+     ?>
 </div>
 </body>
 </html>
